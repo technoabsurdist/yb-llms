@@ -8,7 +8,7 @@
 
 
 ## 📙 Overview
-Foundational blocks to interact with Youtube API and OpenAI's GPT-3 to transcribe, summarize, and analyze Youtube videos. The API is designed to be extendable and customizable, allowing for easy integration with other services and APIs.
+Foundational blocks to interact with Youtube API and LLMs to transcribe, summarize, and analyze Youtube videos. The API is designed to be extendable and customizable, allowing for easy integration with other services and APIs.
 Built using Flask, OpenAI's GPT-3.5-turbo, Youtube third-party libraries, and scraping techniques. 
 <br />
 
