@@ -19,6 +19,16 @@ Built using Flask, OpenAI's GPT-3.5-turbo, Youtube third-party libraries, and sc
 git clone https://github.com/technoabsurdist/yb-transcript.git
 cd yb-transcript
 ```
+
+### Easy Setup
+2. Run shell script: 
+```
+chmod +x run.sh
+./run.sh
+```
+
+### Or, Manual Setup
+
 2. Install requirements: 
 ```
 pip install -r requirements.txt
