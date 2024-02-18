@@ -3,7 +3,6 @@ from helpers import download_youtube_transcript
 from prompts import summary_prompt, format_prompt, bullet_point_summary_prompt
 from openai import OpenAI
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
