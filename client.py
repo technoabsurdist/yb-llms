@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, send_file
 from functools import wraps
+import re
 from helpers import download_youtube_transcript, get_youtube_title
 from prompts import summary_prompt, format_prompt, bps_prompt
 from openai import OpenAI
@@ -12,32 +13,37 @@ client = OpenAI()
 app = Flask(__name__)
 
 def llm_request(prompt):
-    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{'role': 'user', 'content': prompt}])
-    return response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{'role': 'user', 'content': prompt}])
+        return response.choices[0].message.content
+    except Exception as e:
+        return {'error': 'Failed to generate response from language model', 'detail': str(e)}
 
 def validate_video(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         video_id = request.args.get('video_id')
         video_url = request.args.get('video_url')
-        print(f"Received video URL: {video_url} or ID: {video_id}")
         if not video_id and not video_url:
-            print("Error: No video_id or video_url provided.")  # Log error
-            return jsonify({'error': 'Please provide a video_id or video_url'}), 400
+            return jsonify({'error': 'Missing video_id or video_url'}), 400
         if video_url:
-            query = urlparse(video_url)
-            if query.hostname in ('www.youtube.com', 'youtube.com') and query.path == '/watch':
-                video_id = parse_qs(query.query).get('v', [None])[0]
-            elif query.hostname in ('youtu.be',):
-                video_id = query.path[1:]
-            print(f"Extracted video ID: {video_id}") 
-        if not video_id:
-            print("Error: Unable to extract video ID from URL.")
-            return jsonify({'error': 'Unable to extract video ID from URL'}), 400
-        
+            video_id = extract_video_id(video_url)
+            if not video_id:
+                return jsonify({'error': 'Invalid or unsupported video URL'}), 400
+        if not re.match(r'^[a-zA-Z0-9_-]{11}$', video_id):
+            return jsonify({'error': 'Invalid video ID format'}), 400
         return f(video_id, *args, **kwargs)
     return decorated_function
 
+def extract_video_id(url):
+    parsed_url = urlparse(url)
+    if parsed_url.hostname in ('www.youtube.com', 'youtube.com') and parsed_url.path == '/watch':
+        video_id = parse_qs(parsed_url.query).get('v', [None])[0]
+    elif parsed_url.hostname == 'youtu.be':
+        video_id = parsed_url.path[1:]
+    else:
+        return None
+    return video_id if re.match(r'^[a-zA-Z0-9_-]{11}$', video_id) else None
 
 
 ### Routes
