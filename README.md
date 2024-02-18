@@ -43,9 +43,9 @@ OPENAI_API_KEY=YOUR_API_KEY
 python client.py
 ```
 
-
+<br />
 ## 🎢  Main Attraction!
-Markdown formatted transcript, summary, and bullet points. 
+Markdown formatted document with title, summary, bullet points and full transcript. <br />
 Example from `/example_outputs`:
 <br />
 <div align="center">
@@ -55,13 +55,13 @@ Example from `/example_outputs`:
 
 ## 🧱 Individual Features
 
-* Summary Generation: Condenses the video transcript into a short, comprehensive summary.
-* Bullet Points Generation: Extracts key points from the transcript and presents them in bullet-point format.
-* Transcription Formatting: Improves the readability of the raw transcript by adding punctuation and paragraph breaks.
-* TODO: Chapter Generation: Divides the video into chapters based on the content and context of the transcript.
+* **Summary Generation**: Condenses the video transcript into a short, comprehensive summary.
+* **Bullet Points Generation**: Extracts key points from the transcript and presents them in bullet-point format.
+* **Transcription Formatting**: Improves the readability of the raw transcript by adding punctuation and paragraph breaks.
 
 
 ## 💻 API Endpoints
+**IMPORTANT:** For each endpoint choose to either pass in the Youtube video ID or the video URL. 
 1. **Summary Endpoint** <br />
 * Description: Returns a summary of the YouTube video's transcript.
 * Method: GET
@@ -77,6 +77,7 @@ curl "http://localhost:5000/summary?video_id=YOUR_VIDEO_ID"
 * Method: GET
 * Query Parameters:
 * video_id: The YouTube video ID.
+* video_url: The YouTube video URL.
 Example Request:
 ```
 curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO
@@ -87,9 +88,14 @@ curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO
 * Method: GET
 * Query Parameters:
 * video_id: The YouTube video ID.
-Example Request:
+* video_url: The YouTube video URL.
+Example Request with video ID:
 ```
 curl "http://localhost:5000/transcript?video_id=YOUR_VIDEO_ID"
+```
+Example Request with video URL:
+```
+curl "http://localhost:5000/transcript?video_url=YOUR_VIDEO_URL"
 ```
 
 4. **Chapter Endpoint** <br />
