@@ -63,17 +63,34 @@ Example from `/example_outputs`:
 
 ## 💻 API Endpoints
 **IMPORTANT:** For each endpoint choose to either pass in the Youtube video ID or the video URL. 
-1. **Summary Endpoint** <br />
+
+1. 🎢 **Markdown Download** <br />
+* Description: Returns a markdown formatted document with title, summary, bullet points and full transcript.
+* Method: GET
+* Query Parameters:
+* video_id: The YouTube video ID.
+* video_url: The YouTube video URL.
+Example Request with video ID:
+```
+curl "http://localhost:5000/markdown?video_id=YOUR_VIDEO_ID"
+```
+Example Request with video URL:
+```
+curl "http://localhost:5000/markdown?video_url=YOUR_VIDEO_URL"
+```
+
+2. **Summary Endpoint** <br />
 * Description: Returns a summary of the YouTube video's transcript.
 * Method: GET
 * Query Parameters:
 * video_id: The YouTube video ID.
+* video_url: The YouTube video URL.
 Example Request:
 ```
 curl "http://localhost:5000/summary?video_id=YOUR_VIDEO_ID"
 ```
 
-2. **Bullet Points Endpoint** <br />
+3. **Bullet Points Endpoint** <br />
 * Description: Returns bullet points of the YouTube video's transcript.
 * Method: GET
 * Query Parameters:
@@ -81,10 +98,10 @@ curl "http://localhost:5000/summary?video_id=YOUR_VIDEO_ID"
 * video_url: The YouTube video URL.
 Example Request:
 ```
-curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO
+curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO_ID"
 ```
 
-3. **Transcript Endpoint** <br />
+4. **Transcript Endpoint** <br />
 * Description: Returns the transcript of the YouTube video.
 * Method: GET
 * Query Parameters:
@@ -93,20 +110,6 @@ curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO
 Example Request with video ID:
 ```
 curl "http://localhost:5000/transcript?video_id=YOUR_VIDEO_ID"
-```
-Example Request with video URL:
-```
-curl "http://localhost:5000/transcript?video_url=YOUR_VIDEO_URL"
-```
-
-4. **Chapter Endpoint** <br />
-* Description: Returns chapters of the YouTube video.
-* Method: GET
-* Query Parameters:
-* video_id: The YouTube video ID.
-Example Request:
-```
-curl "http://localhost:5000/chapters?video_id=YOUR_VIDEO_ID"
 ```
 
 
