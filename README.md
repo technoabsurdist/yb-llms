@@ -79,6 +79,8 @@ Example Request with video URL:
 curl "http://localhost:5000/markdown?video_url=YOUR_VIDEO_URL"
 ```
 
+<br /> 
+
 2. **Summary Endpoint** <br />
 * Description: Returns a summary of the YouTube video's transcript.
 * Method: GET
@@ -90,6 +92,8 @@ Example Request:
 curl "http://localhost:5000/summary?video_id=YOUR_VIDEO_ID"
 ```
 
+<br /> 
+
 3. **Bullet Points Endpoint** <br />
 * Description: Returns bullet points of the YouTube video's transcript.
 * Method: GET
@@ -100,6 +104,8 @@ Example Request:
 ```
 curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO_ID"
 ```
+
+<br /> 
 
 4. **Transcript Endpoint** <br />
 * Description: Returns the transcript of the YouTube video.
