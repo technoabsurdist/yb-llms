@@ -5,6 +5,7 @@ from prompts import summary_prompt, format_prompt, bps_prompt
 from openai import OpenAI
 from dotenv import load_dotenv
 from urllib.parse import urlparse, parse_qs
+from concurrent.futures import ThreadPoolExecutor
 
 load_dotenv()
 client = OpenAI()
@@ -68,12 +69,22 @@ def get_transcription(video_id):
 @app.route('/markdown_download', methods=['GET'])
 @validate_video
 def markdown_download(video_id):
-    print(f"Generating markdown file for video ID: {video_id}")
     video_title = get_youtube_title(video_id)
     transcript_raw = download_youtube_transcript(video_id)
-    summary = llm_request(summary_prompt(transcript_raw))
-    bullet_points = llm_request(bps_prompt(transcript_raw))
-    formatted_transcript = llm_request(format_prompt(transcript_raw))
+
+    def fetch_data(prompt):
+        return llm_request(prompt(transcript_raw))
+    
+    # concurrent requests
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        future_summary = executor.submit(fetch_data, summary_prompt)
+        future_bullet_points = executor.submit(fetch_data, bps_prompt)
+        future_formatted_transcript = executor.submit(fetch_data, format_prompt)
+        
+        summary = future_summary.result()
+        bullet_points = future_bullet_points.result()
+        formatted_transcript = future_formatted_transcript.result()
+    
     markdown_content = f"""# {video_title} -- Transcript\n\n## Summary\n{summary}\n\n## Bullet Points\n{bullet_points}\n\n## Formatted Transcript\n{formatted_transcript}\n"""
     file_path = f"outputs/{video_id}.md"
     with open(file_path, 'w') as markdown_file:
