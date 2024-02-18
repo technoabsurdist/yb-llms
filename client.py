@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, send_file
-from helpers import download_youtube_transcript
+from helpers import download_youtube_transcript, get_youtube_title
 from prompts import summary_prompt, format_prompt, bps_prompt
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -47,6 +47,7 @@ def get_transcription():
 @app.route('/markdown_download', methods=['GET'])
 def markdown_download():
     video_id = request.args.get('video_id')
+    video_title = get_youtube_title(video_id)
     transcript_raw = download_youtube_transcript(video_id)
 
     summary = _llm_summary(transcript_raw)
@@ -54,7 +55,7 @@ def markdown_download():
     formatted_transcript = _llm_format(transcript_raw)
 
     markdown_content = f"""
-# Video Summary
+# {video_title if video_title else "Video"} -- Transcript
 
 ## Summary
 {summary}
