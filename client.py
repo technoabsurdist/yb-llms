@@ -66,7 +66,6 @@ def markdown_download():
 ## Formatted Transcript
 {formatted_transcript}
 """
-
     file_path = f"outputs/{video_id}.md"
     with open(file_path, 'w') as markdown_file:
         markdown_file.write(markdown_content)
@@ -82,7 +81,7 @@ def ask_video():
     return jsonify({'model_answer': generation})
     
 
-# Internal LLM requests
+###  Internal LLM requests
 def _llm_summary(transcript):
     summary_prompt_text = summary_prompt(transcript)
     return llm_request(summary_prompt_text)
