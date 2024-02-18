@@ -12,12 +12,21 @@
 
 ## Setup and Installation
 
+```
+pip install -r requirements.txt
+```
+
 **Prerequisites**
 
 
 **Installation**
 
 
+## Individual Features
+
+* Summary Generation: Condenses the video transcript into a short, comprehensive summary.
+* Bullet Points Generation: Extracts key points from the transcript and presents them in bullet-point format.
+* Transcription Formatting: Improves the readability of the raw transcript by adding punctuation and paragraph breaks.
 
 **Starting the Server**
 
