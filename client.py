@@ -14,33 +14,37 @@ def llm_request(prompt):
     response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{'role': 'user', 'content': prompt}])
     return response.choices[0].message.content
 
-
 def validate_video(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         video_id = request.args.get('video_id')
         video_url = request.args.get('video_url')
-        
+        print(f"Received video URL: {video_url} or ID: {video_id}")
         if not video_id and not video_url:
+            print("Error: No video_id or video_url provided.")  # Log error
             return jsonify({'error': 'Please provide a video_id or video_url'}), 400
-        
         if video_url:
             query = urlparse(video_url)
             if query.hostname in ('www.youtube.com', 'youtube.com') and query.path == '/watch':
                 video_id = parse_qs(query.query).get('v', [None])[0]
             elif query.hostname in ('youtu.be',):
                 video_id = query.path[1:]
-        
+            print(f"Extracted video ID: {video_id}") 
         if not video_id:
+            print("Error: Unable to extract video ID from URL.")
             return jsonify({'error': 'Unable to extract video ID from URL'}), 400
         
         return f(video_id, *args, **kwargs)
     return decorated_function
 
 
+
+### Routes
+
 @app.route('/summary', methods=['GET'])
 @validate_video
 def get_summary(video_id):
+    print(f"Generating summary for video ID: {video_id}")
     transcript_raw = download_youtube_transcript(video_id)
     summary_text = llm_request(summary_prompt(transcript_raw))
     return jsonify({'summary': summary_text})
@@ -48,6 +52,7 @@ def get_summary(video_id):
 @app.route('/bullet_points', methods=['GET'])
 @validate_video
 def get_bullet_points(video_id):
+    print("Generating bullet points for video ID: {video_id}")
     transcript_raw = download_youtube_transcript(video_id)
     bullet_points = llm_request(bps_prompt(transcript_raw))
     return jsonify({'bullet_points': bullet_points})
@@ -55,6 +60,7 @@ def get_bullet_points(video_id):
 @app.route('/transcription', methods=['GET'])
 @validate_video
 def get_transcription(video_id):
+    print(f"Generating transcription for video ID: {video_id}")
     transcript_raw = download_youtube_transcript(video_id)
     formatted_transcript = llm_request(format_prompt(transcript_raw))
     return jsonify({'transcription': formatted_transcript})
@@ -62,6 +68,7 @@ def get_transcription(video_id):
 @app.route('/markdown_download', methods=['GET'])
 @validate_video
 def markdown_download(video_id):
+    print(f"Generating markdown file for video ID: {video_id}")
     video_title = get_youtube_title(video_id)
     transcript_raw = download_youtube_transcript(video_id)
     summary = llm_request(summary_prompt(transcript_raw))
@@ -73,9 +80,9 @@ def markdown_download(video_id):
         markdown_file.write(markdown_content)
     return send_file(file_path, as_attachment=True, download_name=f"{video_id}_summary.md")
 
-
-
-
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({'message': 'YB <> LLM => Server running!'})
 
 if __name__ == "__main__":
     app.run(debug=True)
