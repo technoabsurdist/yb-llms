@@ -1,5 +1,4 @@
 from youtube_transcript_api import YouTubeTranscriptApi
-import asyncio
 
 def download_youtube_transcript(video_id):
     try:

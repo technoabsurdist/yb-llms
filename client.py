@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from helpers import download_youtube_transcript
-from prompts import summary_prompt, format_prompt, bullet_point_summary_prompt
+from prompts import summary_prompt, format_prompt, bps_prompt
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -19,6 +19,7 @@ def llm_request(prompt):
     output = response.choices[0].message.content
     return output
 
+
 @app.route('/summary', methods=['GET'])
 def get_summary():
     video_id = request.args.get('video_id')
@@ -26,12 +27,14 @@ def get_summary():
     summary_text = _llm_summary(transcript_raw)
     return jsonify({'summary': summary_text})
 
+
 @app.route('/bullet_points', methods=['GET'])
 def get_bullet_points():
     video_id = request.args.get('video_id')
     transcript_raw = download_youtube_transcript(video_id)
     bullet_points = _llm_bps(transcript_raw)
     return jsonify({'bullet_points': bullet_points})
+
 
 @app.route('/transcription', methods=['GET'])
 def get_transcription():
@@ -41,12 +44,25 @@ def get_transcription():
     return jsonify({'transcription': formatted_transcript})
 
 
+@app.route('/process_all', methods=['GET'])
+def process_all():
+    video_id = request.args.get('video_id')
+    transcript_raw = download_youtube_transcript(video_id)
+
+    summary_task = _llm_summary(transcript_raw)
+    bullet_points_task = _llm_bps(transcript_raw)
+    formatted_transcript_task = _llm_format(transcript_raw)
+
+    with open('output.txt', 'w') as f:
+        f.write(f"Summary:\n{summary_task}\n\n\nBullet Points:\n{bullet_points_task}\n\n\nFormatted Transcript:\n{formatted_transcript_task}")
+
+
 def _llm_summary(transcript):
     summary_prompt_text = summary_prompt(transcript)
     return llm_request(summary_prompt_text)
 
 def _llm_bps(transcript):
-    bps_prompt_text = bullet_point_summary_prompt(transcript)
+    bps_prompt_text = bps_prompt(transcript)
     return llm_request(bps_prompt_text)
 
 def _llm_format(transcript):
