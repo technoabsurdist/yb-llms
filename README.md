@@ -44,6 +44,7 @@ python client.py
 ```
 
 <br />
+
 ## 🎢  Main Attraction!
 Markdown formatted document with title, summary, bullet points and full transcript. <br />
 Example from `/example_outputs`:
