@@ -73,6 +73,7 @@ def markdown_download():
     return send_file(file_path, as_attachment=True, download_name=f"{video_id}_summary.md")
 
 
+# Internal LLM requests
 def _llm_summary(transcript):
     summary_prompt_text = summary_prompt(transcript)
     return llm_request(summary_prompt_text)
