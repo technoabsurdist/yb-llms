@@ -7,35 +7,90 @@
 </div>
 
 
-## Overview
-<br /> 
+## 📙 Overview
+Foundational blocks to interact with Youtube API and OpenAI's GPT-3 to transcribe, summarize, and analyze Youtube videos. The API is designed to be extendable and customizable, allowing for easy integration with other services and APIs.
+Built using Flask, OpenAI's GPT-3.5-turbo, Youtube third-party libraries, and scraping techniques. 
 <br />
 
-## Setup and Installation
+## ⚙️ Setup and Installation
 
+1. Clone the repository: 
+```
+git clone https://github.com/technoabsurdist/yb-transcript.git
+cd yb-transcript
+```
+2. Install requirements: 
 ```
 pip install -r requirements.txt
 ```
+3. Set up the environment variables (`.env.example` file available): 
+```
+OPENAI_API_KEY=YOUR_API_KEY
+```
 
-**Prerequisites**
+4. Run the server: 
+```
+python client.py
+```
 
 
-**Installation**
+## 🎢  Main Attraction!
+Markdown formatted transcript, summary, and bullet points. 
+Example from `/example_outputs`:
+<br />
+<div align="center">
+  <img src="example_ss.png" height="400" />
+</div>
 
 
-## Individual Features
+## 🧱 Individual Features
 
 * Summary Generation: Condenses the video transcript into a short, comprehensive summary.
 * Bullet Points Generation: Extracts key points from the transcript and presents them in bullet-point format.
 * Transcription Formatting: Improves the readability of the raw transcript by adding punctuation and paragraph breaks.
+* TODO: Chapter Generation: Divides the video into chapters based on the content and context of the transcript.
 
-**Starting the Server**
 
+## 💻 API Endpoints
+1. **Summary Endpoint** <br />
+* Description: Returns a summary of the YouTube video's transcript.
+* Method: GET
+* Query Parameters:
+* video_id: The YouTube video ID.
+Example Request:
+```
+curl "http://localhost:5000/summary?video_id=YOUR_VIDEO_ID"
+```
 
-## API Endpoint
-POST `/submit` - Submit a link for transcription and title retrieval. <br />
-Body: `{ "link": "URL" }` <br /> 
-Output: `{ text, summary, title, tags, chapters }`
+2. **Bullet Points Endpoint** <br />
+* Description: Returns bullet points of the YouTube video's transcript.
+* Method: GET
+* Query Parameters:
+* video_id: The YouTube video ID.
+Example Request:
+```
+curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO
+```
+
+3. **Transcript Endpoint** <br />
+* Description: Returns the transcript of the YouTube video.
+* Method: GET
+* Query Parameters:
+* video_id: The YouTube video ID.
+Example Request:
+```
+curl "http://localhost:5000/transcript?video_id=YOUR_VIDEO_ID"
+```
+
+4. **Chapter Endpoint** <br />
+* Description: Returns chapters of the YouTube video.
+* Method: GET
+* Query Parameters:
+* video_id: The YouTube video ID.
+Example Request:
+```
+curl "http://localhost:5000/chapters?video_id=YOUR_VIDEO_ID"
+```
 
 
 
