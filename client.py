@@ -4,6 +4,7 @@ from helpers import download_youtube_transcript, get_youtube_title
 from prompts import summary_prompt, format_prompt, bps_prompt
 from openai import OpenAI
 from dotenv import load_dotenv
+from urllib.parse import urlparse, parse_qs
 
 load_dotenv()
 client = OpenAI()
@@ -13,17 +14,29 @@ def llm_request(prompt):
     response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{'role': 'user', 'content': prompt}])
     return response.choices[0].message.content
 
+
 def validate_video(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         video_id = request.args.get('video_id')
         video_url = request.args.get('video_url')
+        
         if not video_id and not video_url:
-            return jsonify({'error': 'Please provide a video_id or video_url'})
+            return jsonify({'error': 'Please provide a video_id or video_url'}), 400
+        
+        if video_url:
+            query = urlparse(video_url)
+            if query.hostname in ('www.youtube.com', 'youtube.com') and query.path == '/watch':
+                video_id = parse_qs(query.query).get('v', [None])[0]
+            elif query.hostname in ('youtu.be',):
+                video_id = query.path[1:]
+        
         if not video_id:
-            video_id = video_url.split("v=")[1].split("&")[0]
+            return jsonify({'error': 'Unable to extract video ID from URL'}), 400
+        
         return f(video_id, *args, **kwargs)
     return decorated_function
+
 
 @app.route('/summary', methods=['GET'])
 @validate_video
