@@ -17,12 +17,16 @@ def download_youtube_transcript(video_id):
 
 # Scraping to not use official API
 def get_youtube_title(video_id):
-    url = "https://www.youtube.com/watch?v=" + video_id
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text)
-    link = soup.find_all(name="title")[0]
-    title = str(link)
-    title = title.replace("<title>","")
-    title = title.replace("</title>","")
+    try:
+        url = "https://www.youtube.com/watch?v=" + video_id
+        r = requests.get(url)
+        soup = BeautifulSoup(r.text, features="html.parser")
+        link = soup.find_all(name="title")[0]
+        title = str(link)
+        title = title.replace("<title>","")
+        title = title.replace("</title>","")
+    except Exception as e:
+        print(f"Error fetching title: {e}")
+        return ""
 
     return title

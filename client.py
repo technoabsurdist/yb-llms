@@ -55,7 +55,7 @@ def markdown_download():
     formatted_transcript = _llm_format(transcript_raw)
 
     markdown_content = f"""
-# {video_title if video_title else "Video"} -- Transcript
+# {video_title} -- Transcript
 
 ## Summary
 {summary}
@@ -67,11 +67,20 @@ def markdown_download():
 {formatted_transcript}
 """
 
-    file_path = f"{video_id}.md"
+    file_path = f"outputs/{video_id}.md"
     with open(file_path, 'w') as markdown_file:
         markdown_file.write(markdown_content)
     return send_file(file_path, as_attachment=True, download_name=f"{video_id}_summary.md")
 
+
+@app.route('/ask_video', methods=['GET'])
+def ask_video():
+    video_id = request.args.get('video_id')
+    prompt = request.args.get('prompt')
+    transcript_raw = download_youtube_transcript(video_id)
+    generation = _llm_ask_video(transcript_raw, prompt)
+    return jsonify({'model_answer': generation})
+    
 
 # Internal LLM requests
 def _llm_summary(transcript):
@@ -85,6 +94,14 @@ def _llm_bps(transcript):
 def _llm_format(transcript):
     formatted_prompt = format_prompt(transcript)
     return llm_request(formatted_prompt)
+
+def _llm_ask_video(transcript, prompt):
+    # TODO: Implement this
+    # Chunk + embed the transcript
+    # Save in vector database
+    # Prompt the model along with RAG over vector database chunks
+    return ""
+
 
 if __name__ == "__main__":
     app.run(debug=True)
