@@ -49,9 +49,9 @@ Efficiently-retrieved Markdown/PDF/HTML formatted document with title, summary, 
 Examples from `/example_outputs` (Markdown, PDF, and HTML, respectively):
 <br />
 <div align="center">
-  <img src="resources/example_ss.png" height="380" width="300" />
-  <img src="resources/example2_ss.png" height="380" width="300" />
-  <img src="resources/example3_ss.png" height="380" width="300">
+  <img src="resources/example_ss.png" height="380" width="400" />
+  <img src="resources/example2_ss.png" height="380" width="400" />
+  <img src="resources/example3_ss.png" height="380" width="400">
 </div>
 
 
