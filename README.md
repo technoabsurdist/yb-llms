@@ -8,7 +8,7 @@
 
 
 ## 📙 Overview
-Foundational blocks to interact with Youtube API and LLMs to transcribe, summarize, and analyze Youtube videos. The API is designed to be minimal and customizable, allowing for easy integration with other services and APIs.
+Foundational blocks to interact with Youtube API and LLMs to transcribe, summarize, and analyze Youtube videos. The API is designed to be minimal, concurrent, and customizable, allowing for easy integration with other services and APIs.
 <br />
 
 ## ⚙️ Setup and Installation
@@ -45,8 +45,8 @@ python client.py
 <br />
 
 ## 🎢  Main Attraction!
-Markdown/PDF formatted document with title, summary, bullet points and full transcript. <br />
-Example from `/example_outputs`:
+Efficiently-retrieved Markdown/PDF formatted document with title, summary, bullet points and full transcript. <br />
+Examples from `/example_outputs`:
 <br />
 <div align="center">
   <img src="resources/example_ss.png" height="380" width="400" />
