@@ -72,7 +72,7 @@ Example from `/example_outputs`:
 * Query Parameters:
 * video_id: The YouTube video ID.
 * video_url: The YouTube video URL.
-* format: The format of the document. Choose from 'md' or 'pdf'. (Default: 'md')
+* format: The format of the document. Choose from 'md' or 'pdf'. (Default: 'md') <br /> <br />
 Example Request with video ID:
 ```
 curl "http://localhost:5000/markdown?video_id=YOUR_VIDEO_ID"
@@ -93,7 +93,7 @@ curl "http://localhost:5000/markdown?video_url=YOUR_VIDEO_URL"
 * Method: GET
 * Query Parameters:
 * video_id: The YouTube video ID.
-* video_url: The YouTube video URL.
+* video_url: The YouTube video URL. <br /> <br />
 Example Request:
 ```
 curl "http://localhost:5000/summary?video_id=YOUR_VIDEO_ID"
@@ -110,7 +110,7 @@ curl "http://localhost:5000/summary?video_id=YOUR_VIDEO_ID"
 * Method: GET
 * Query Parameters:
 * video_id: The YouTube video ID.
-* video_url: The YouTube video URL.
+* video_url: The YouTube video URL. <br /> <br />
 Example Request:
 ```
 curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO_ID"
@@ -127,7 +127,7 @@ curl "http://localhost:5000/bullet_points?video_id=YOUR_VIDEO_ID"
 * Method: GET
 * Query Parameters:
 * video_id: The YouTube video ID.
-* video_url: The YouTube video URL.
+* video_url: The YouTube video URL. <br /> <br />
 Example Request with video ID:
 ```
 curl "http://localhost:5000/transcript?video_id=YOUR_VIDEO_ID"
