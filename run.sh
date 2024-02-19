@@ -10,12 +10,17 @@ fi
 echo "Installing requirements..."
 pip install -r requirements.txt
 
-# Step 3: Ask for OpenAI API Key
-echo "Please enter your OpenAI API key:"
-read OPENAI_API_KEY
+# Step 3: Check if the OpenAI API key is already set in the .env file
+if grep -q "OPENAI_API_KEY" .env; then
+    echo "OpenAI API key already set."
+else
+    # Ask for OpenAI API Key if not already set
+    echo "Please enter your OpenAI API key:"
+    read OPENAI_API_KEY
 
-# Step 4: Create or update the .env file with the OpenAI API key
-echo "OPENAI_API_KEY=${OPENAI_API_KEY}" > .env
+    # Step 4: Create or update the .env file with the OpenAI API key
+    echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env
+fi
 
 # Step 5: Run the server
 echo "Starting the server..."
