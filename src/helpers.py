@@ -14,8 +14,8 @@ import markdown2
 load_dotenv()
 client = OpenAI()
 
-# using third-party library youtube_transcript_api
 def download_youtube_transcript(video_id):
+    """Downloads the transcript for a given YouTube video using youtube_transcript_api."""
     try:
         transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
         transcript_fulltxt = ""
@@ -28,17 +28,16 @@ def download_youtube_transcript(video_id):
         print(f"Error fetching transcript: {e}")
         return "" 
 
-
 def llm_request(prompt):
+    """Generates a response from chat openai-3.5-turbo"""
     try:
         response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{'role': 'user', 'content': prompt}])
         return response.choices[0].message.content
     except Exception as e:
         return {'error': 'Failed to generate response from language model', 'detail': str(e)}
     
-
-# Scraping to not use official API
 def get_youtube_title(video_id):
+    """Fetches the title of a YouTube video using web scraping (beautifulsoup)"""
     try:
         url = "https://www.youtube.com/watch?v=" + video_id
         r = requests.get(url)
@@ -53,8 +52,8 @@ def get_youtube_title(video_id):
 
     return title
 
-# Extract the video ID from a YouTube URL
 def extract_video_id(url):
+    """Extracts the video ID from a YouTube URL. Supports both regular and shortened URLs."""
     parsed_url = urlparse(url)
     if parsed_url.hostname in ('www.youtube.com', 'youtube.com') and parsed_url.path == '/watch':
         video_id = parse_qs(parsed_url.query).get('v', [None])[0]
@@ -64,8 +63,8 @@ def extract_video_id(url):
         return None
     return video_id if re.match(r'^[a-zA-Z0-9_-]{11}$', video_id) else None
 
-# Validate the video ID or Youtube URL as a valid video (id) format.
 def validate_video(f):
+    """Decorator to validate video ID or URL."""
     @wraps(f)
     def decorated_function(*args, **kwargs):
         video_id = request.args.get('video_id')
