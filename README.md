@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-    <img src="resources/youtube_logo.webp" width="150" height="150" />
+    <img src="resources/youtube_logo.webp" width="180" height="180" />
   <br />
   <h2>Youtube <> LLMs</h2>
   <h4>Minimalistic and customizable API to transcript Youtube videos along with LLM-powered summaries, chapters, and analysis.</h4>
