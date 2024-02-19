@@ -64,13 +64,15 @@ Example from `/example_outputs`:
 ## 💻 API Endpoints
 **IMPORTANT:** For each endpoint choose to either pass in the Youtube video ID or the video URL. 
 
+<br />
+
 1. 🎢 **Markdown/PDF Download** <br />
 * Description: Returns a markdown/pdf formatted document with title, summary, bullet points and full transcript.
 * Method: GET
 * Query Parameters:
 * video_id: The YouTube video ID.
 * video_url: The YouTube video URL.
-* format: The format of the document. Choose from 'md' or 'pdf'. -- Default: 'md'
+* format: The format of the document. Choose from 'md' or 'pdf'. (Default: 'md')
 Example Request with video ID:
 ```
 curl "http://localhost:5000/markdown?video_id=YOUR_VIDEO_ID"
