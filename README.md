@@ -131,7 +131,14 @@ curl "http://localhost:5000/transcript?video_id=YOUR_VIDEO_ID"
 ```
 
 
+## 🌱 Contributing
 
+Contributions are welcome! Feel free to open an issue or submit a pull request if you have any improvements or suggestions.
+Here are a few ways to improve this service: 
+- Enable support for local LLM models with ollama or huggingface transformers.
+- Add support for other document formats like DOCX, TXT, etc.
+- Translating transcription to other languages.
+- Add service more detailed analysis and insights.
 
 
 

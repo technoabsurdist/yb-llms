@@ -78,7 +78,7 @@ def get_transcription(video_id):
 @validate_video
 def download_content(video_id):
     format_type = request.args.get('format', 'markdown').lower()
-    video_title = get_youtube_title(video_id)
+    video_title = get_youtube_title(video_id) if get_youtube_title(video_id) else f"{video_id}"
     transcript_raw = download_youtube_transcript(video_id)
 
     def fetch_data(prompt):
