@@ -11,7 +11,17 @@
 Foundational blocks to interact with Youtube API and LLMs to transcribe, summarize, and analyze Youtube videos. The API is designed to be minimal, concurrent, and customizable, allowing for easy integration with other services and APIs.
 <br />
 
-## ⚙️ Setup and Installation
+- [Setup and Installation](#setup-and-installation)
+- [Main Attraction!](#main-attraction)
+- [Individual Features](#individual-features)
+- [API Endpoints](#api-endpoints)
+- [Contributing](#contributing)
+
+<br />
+
+<a name="setup-and-installation"></a>
+
+## 🚀  Setup and Installation
 
 1. Clone the repository: 
 ```
@@ -44,6 +54,8 @@ python client.py
 
 <br />
 
+<a name="main-attraction"></a>
+
 ## 🎢  Main Attraction!
 Efficiently-retrieved Markdown/PDF/HTML formatted document with title, summary, bullet points and full transcript. <br />
 Examples from `/example_outputs` (Markdown, PDF, and HTML, respectively):
@@ -55,12 +67,16 @@ Examples from `/example_outputs` (Markdown, PDF, and HTML, respectively):
 </div>
 
 
+<a name="individual-features"></a>
+
 ## 🧱 Individual Features
 
 * **Summary Generation**: Condenses the video transcript into a short, comprehensive summary.
 * **Bullet Points Generation**: Extracts key points from the transcript and presents them in bullet-point format.
 * **Transcription Formatting**: Improves the readability of the raw transcript by adding punctuation and paragraph breaks.
 
+
+<a name="api-endpoints"></a>
 
 ## 💻 API Endpoints
 **IMPORTANT:** For each endpoint choose to either pass in the Youtube video ID or the video URL. 
@@ -134,6 +150,8 @@ curl "http://localhost:5000/transcript?video_id=YOUR_VIDEO_ID"
 <br />
 
 <br /> 
+
+<a name="contributing"></a>
 
 ## 🌱 Contributing
 
