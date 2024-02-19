@@ -6,6 +6,11 @@
   <h4>Minimalistic and customizable API to transcript Youtube videos along with LLM-powered summaries, chapters, and analysis.</h4>
 </div>
 
+<br />
+
+<br /> 
+
+<br />
 
 ## 📙 Overview
 Foundational blocks to interact with Youtube API and LLMs to transcribe, summarize, and analyze Youtube videos. The API is designed to be minimal, concurrent, and customizable, allowing for easy integration with other services and APIs.
