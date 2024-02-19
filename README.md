@@ -131,6 +131,10 @@ curl "http://localhost:5000/transcript?video_id=YOUR_VIDEO_ID"
 ```
 
 
+<br />
+
+<br /> 
+
 ## 🌱 Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request if you have any improvements or suggestions.
