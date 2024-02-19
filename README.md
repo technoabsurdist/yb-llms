@@ -49,8 +49,8 @@ Markdown/PDF formatted document with title, summary, bullet points and full tran
 Example from `/example_outputs`:
 <br />
 <div align="center">
-  <img src="example_ss.png" height="380" width="450" />
-  <img src="example2_ss.png" height="380" width="450" />
+  <img src="example_ss.png" height="380" width="400" />
+  <img src="example2_ss.png" height="380" width="400" />
 </div>
 
 
