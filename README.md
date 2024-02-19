@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-    <img src="youtube_logo.webp" width="150" height="150" />
+    <img src="resources/youtube_logo.webp" width="150" height="150" />
   <br />
   <h2>Youtube <> LLMs</h2>
   <h4>Minimalistic and customizable API to transcript Youtube videos along with LLM-powered summaries, chapters, and analysis.</h4>
@@ -49,8 +49,8 @@ Markdown/PDF formatted document with title, summary, bullet points and full tran
 Example from `/example_outputs`:
 <br />
 <div align="center">
-  <img src="example_ss.png" height="380" width="400" />
-  <img src="example2_ss.png" height="380" width="400" />
+  <img src="resources/example_ss.png" height="380" width="400" />
+  <img src="resources/example2_ss.png" height="380" width="400" />
 </div>
 
 
