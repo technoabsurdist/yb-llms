@@ -3,7 +3,7 @@
     <img src="youtube_logo.webp" width="150" height="150" />
   <br />
   <h2>Youtube <> LLMs</h2>
-  <h4>Extendable and customizable API to transcript Youtube videos along with LLM-powered summaries, chapters, and analysis.</h4>
+  <h4>Minimalistic and customizable API to transcript Youtube videos along with LLM-powered summaries, chapters, and analysis.</h4>
 </div>
 
 

@@ -67,7 +67,7 @@ def get_bullet_points(video_id):
 @app.route('/transcription', methods=['GET'])
 @validate_video
 def get_transcription(video_id):
-    print(f"Generating transcription for video ID: {video_id}")
+    print(f"Generating and formatting transcription for video ID: {video_id}")
     transcript_raw = download_youtube_transcript(video_id)
     formatted_transcript = llm_request(format_prompt(transcript_raw))
     return jsonify({'transcription': formatted_transcript})
@@ -96,6 +96,11 @@ def markdown_download(video_id):
     with open(file_path, 'w') as markdown_file:
         markdown_file.write(markdown_content)
     return send_file(file_path, as_attachment=True, download_name=f"{video_id}_summary.md")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return jsonify({'error': 'This endpoint does not exist. Please check the URL and try again.'}), 404
+
 
 @app.route('/', methods=['GET'])
 def index():
