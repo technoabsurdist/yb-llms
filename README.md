@@ -45,11 +45,12 @@ python client.py
 <br />
 
 ## 🎢  Main Attraction!
-Markdown formatted document with title, summary, bullet points and full transcript. <br />
+Markdown/PDF formatted document with title, summary, bullet points and full transcript. <br />
 Example from `/example_outputs`:
 <br />
 <div align="center">
-  <img src="example_ss.png" height="400" />
+  <img src="example_ss.png" height="350" width="400" />
+  <img src="example2_ss.png" height="350" width="400" />
 </div>
 
 
