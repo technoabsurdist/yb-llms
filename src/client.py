@@ -97,10 +97,10 @@ def download_content(video_id):
     
     if format_type == 'pdf':
         html_content = markdown2.markdown(markdown_content)
-        file_path = f"outputs/{video_id}.pdf"
+        file_path = f"../outputs/{video_id}.pdf"
         HTML(string=html_content).write_pdf(file_path)
     else:  # Markdown format
-        file_path = f"outputs/{video_id}.md"
+        file_path = f"../outputs/{video_id}.md"
         with open(file_path, 'w') as file:
             file.write(markdown_content)
     
