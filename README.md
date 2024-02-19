@@ -51,7 +51,7 @@ Examples from `/example_outputs` (Markdown, PDF, and HTML, respectively):
 <div align="center">
   <img src="resources/example_ss.png" height="380" width="300" />
   <img src="resources/example2_ss.png" height="380" width="300" />
-  <img src="resources/example3_ss.png" height="350" width="300">
+  <img src="resources/example3_ss.png" height="380" width="300">
 </div>
 
 
