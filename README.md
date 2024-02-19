@@ -45,12 +45,13 @@ python client.py
 <br />
 
 ## 🎢  Main Attraction!
-Efficiently-retrieved Markdown/PDF formatted document with title, summary, bullet points and full transcript. <br />
-Examples from `/example_outputs`:
+Efficiently-retrieved Markdown/PDF/HTML formatted document with title, summary, bullet points and full transcript. <br />
+Examples from `/example_outputs` (Markdown, PDF, and HTML, respectively):
 <br />
 <div align="center">
-  <img src="resources/example_ss.png" height="380" width="400" />
-  <img src="resources/example2_ss.png" height="380" width="400" />
+  <img src="resources/example_ss.png" height="380" width="300" />
+  <img src="resources/example2_ss.png" height="380" width="300" />
+  <img src="resources/example3_ss.png" height="350" width="300">
 </div>
 
 
@@ -72,13 +73,13 @@ Examples from `/example_outputs`:
 * Query Parameters:
 * video_id: The YouTube video ID.
 * video_url: The YouTube video URL.
-* format: The format of the document. Choose from 'md' or 'pdf'. (Default: 'md') <br />
+* format: The format of the document. Choose from 'md', 'html', or 'pdf'. (Default: 'md') <br />
 ```
-curl "http://localhost:5000/markdown?video_id=YOUR_VIDEO_ID"
+curl "http://localhost:5000/markdown?video_id=YOUR_VIDEO_ID\&format\=html"
 ```
 Example Request with video URL:
 ```
-curl "http://localhost:5000/markdown?video_url=YOUR_VIDEO_URL"
+curl "http://localhost:5000/markdown?video_url=YOUR_VIDEO_URL\&format\=pdf"
 ```
 
 <br /> 
