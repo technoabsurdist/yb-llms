@@ -19,4 +19,4 @@ echo "OPENAI_API_KEY=${OPENAI_API_KEY}" > .env
 
 # Step 5: Run the server
 echo "Starting the server..."
-python client.py
+python src/client.py
